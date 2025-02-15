@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selamat Ulang Tahun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            keyframes: {
+              "slide-left": {
+                "0%": { transform: "translateX(0%)", opacity: "1" },
+                "100%": { transform: "translateX(-100%)", opacity: "0" },
+              },
+              "slide-in-left": {
+                "0%": { transform: "translateX(100%)", opacity: "0" },
+                "100%": { transform: "translateX(0%)", opacity: "1" },
+              },
+            },
+            animation: {
+              "slide-left": "slide-left 0.5s ease-in-out",
+              "slide-in-left": "slide-in-left 0.5s ease-in-out",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body onload="confettiEffect()" class="bg-gray-100 min-h-screen flex flex-col items-center justify-center bg-cover bg-center py-10">
+    <!-- Navbar Ulang Tahun -->
+    <nav class="w-full bg-white bg-opacity-50 py-4 text-left shadow-lg fixed top-0 left-0 right-0 z-50">
+      <h1 class="text-2xl font-bold text-black animate__animated animate__bounce pl-4">Selamat Ulang Tahun 🎉🎂</h1>
+    </nav>
+
+    <!-- Card untuk Foto dan Teks -->
+    <div class="card bg-white p-6 rounded-lg border-2 border-gray-300 shadow-lg shadow-blue-300 shadow-lg w-80 mt-20">
+      <div class="relative w-full flex items-center justify-center rounded-t-lg overflow-hidden h-[400px]">
+        <img id="slider-image" src="assets/foto1.jpeg" class="absolute w-full h-auto object-scale-down transition-transform duration-500" />
+        <button id="prev-btn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white text-3xl font-bold p-2 rounded-full opacity-50 hover:opacity-100 transition-opacity duration-300">&lt;</button>
+        <button id="next-btn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white text-3xl font-bold p-2 rounded-full opacity-50 hover:opacity-100 transition-opacity duration-300">&gt;</button>
+      </div>
+      <div class="p-4">
+        <h1 id="changing-text" class="text-lg font-medium text-center transition-opacity duration-500 opacity-100">kamuuu lagi ngapain wkwkwk</h1>
+      </div>
+    </div>
+
+    <!-- Kartu Ucapan -->
+    <div class="bg-white border px-10 py-8 border-2 border-gray-300 shadow-lg shadow-blue-300 rounded-xl text-center animate__animated animate__backInDown mt-10 w-80" id="kartu">
+      <h1 class="text-2xl">Happy Birthday</h1>
+      <h1 class="text-3xl text-blue-500 font-bold animate__animated animate__pulse animate__infinite">Nisa Maharani</h1>
+      <button class="p-2 bg-blue-600 text-white rounded mt-5 hover:bg-blue-900 transition ease-in w-full animate__animated animate__delay-1s animate__tada" onclick="ubahKartu()">Klik Disini!</button>
+    </div>
+
+    <!-- Musik Otomatis -->
+    <audio id="background-music" autoplay loop>
+      <source src="musik.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js"></script>
+
+    <script>
+      // Animasi Confetti
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+      function ubahKartu() {
+        let kartu = document.getElementById("kartu");
+        kartu.innerHTML = `
+          <h1 class="text-2xl font-bold animate__animated animate__zoomIn">Selamat Ulang Tahun!</h1>
+          <p class="mt-4 text-gray-700 animate__animated animate__fadeIn">semoga tahun ini kamu penuh dengan kebahagiaan dan keberuntungan yang pastinya semoga skripsian dan sidang nya lancar dan lulus tahun ini aamiin! 🎉🎂</p>
+          <h2 class="mt-3 animate__animated animate__fadeIn">
+            - Dari : Pacar kamuuu -
+          </h2>
+          <button
+            class="p-2 bg-slate-600 text-white rounded mt-5 hover:bg-slate-900 transition ease-in w-full animate__animated animate__delay-1s animate__tada"
+            onclick="refresh()"
+          >
+            Tutup
+          </button>
+          `;
+      }
+
+      function refresh() {
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
